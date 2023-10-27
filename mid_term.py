@@ -1,38 +1,3 @@
-# result = [1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1]
-
-# fault_analyze = {i: 0 for i in range(1, 16)}
-# None_analyze = {i: 0 for i in range(1, 16)}
-
-# # print("ex)\n1 1 1 0 0 1 1 0 1 1 0 0 1 0 1")
-
-
-# q_num=0
-# q_ans=0
-# i=1
-# while(1):
-#     each_TF = list(map(int, input().split()))  # 틀린 문제 1 None 0
-#     q_num=each_TF[0]
-#     if(q_num==-1):
-#         break
-#     q_ans=each_TF[1]
-#     if q_ans==0: # None
-#         None_analyze[q_num] += 1
-#     if q_ans==1: # 틀린 답
-#         fault_analyze[q_num] += 1
-
-        
-
-# A = sorted(fault_analyze, key=fault_analyze.get, reverse=True)
-# print(fault_analyze)
-
-# B = sorted(None_analyze, key=None_analyze.get, reverse=True)
-# print(None_analyze)
-
-# for i in A:
-#     print(f"{i}번 문제 틀린 사람 : {fault_analyze[i]}")
-# for i in B:
-#     print(f"{i}번 문제 무응답한 사람 : {None_analyze[i]}")
-    
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -68,14 +33,16 @@ while True:
         elif q_ans == 'F':
             q_ans = False
 
-        if q_ans == result[q_num]:  # 정답일 경우
+
+        if q_ans == "N":  # None 값인 경우
+            None_analyze[q_num + 1] += 1
+        elif q_ans == result[q_num]:  # 정답일 경우
             score += 2
         elif q_ans != result[q_num]:  # 오답인 경우
             score -= 1
             fault_analyze[q_num + 1] += 1
-        elif q_ans == "N":  # None 값인 경우
-            None_analyze[q_num + 1] += 1
-            pass
+        
+            
     score_dict[student_id] = score
     print(f"score : {score}")
 
